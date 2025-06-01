@@ -87,3 +87,37 @@ spring.jpa.properties.hibernate.format_sql=true
 logging.level.org.hibernate.SQL=DEBUG
 logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
 ```
+
+## ✅ Testes Unitários com JUnit e Mockito
+O projeto contém testes unitários para a camada de serviço CreditoService, utilizando JUnit 5 e Mockito.
+### 🔍 O que está sendo testado?
+- ```getAllCreditos()``` – Testa a conversão de entidades para DTOs com retorno completo.
+- ```findByNumeroNfse(String numeroNfse)``` – Testa a busca por NFSe e a conversão para DTO.
+- ```findByNumeroCredito(String numeroCredito)```
+  - Retorno esperado quando o crédito é encontrado.
+  - Lançamento de exceção quando o crédito não existe.
+### 🧪 Ferramentas usadas
+- JUnit 5
+- Mockito
+- mockito-inline
+### 🛠️ Configuração do pom.xml
+```bash
+<dependency>
+    <groupId>org.mockito</groupId>
+    <artifactId>mockito-inline</artifactId>
+    <version>5.12.0</version>
+    <scope>test</scope>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-test</artifactId>
+    <scope>test</scope>
+</dependency>
+```
+ℹ️ Nota: Estamos usando mockito-inline para evitar avisos de compatibilidade futura com o JDK ao criar mocks de métodos final ou classes imutáveis.
+
+### ▶️ Como rodar os testes
+```bash
+  mvn test
+```
