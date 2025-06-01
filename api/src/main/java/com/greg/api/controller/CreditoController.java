@@ -1,8 +1,10 @@
 package com.greg.api.controller;
 
 import com.greg.api.dto.CreditoDTO;
+import com.greg.api.messaging.KafkaProducerService;
 import com.greg.api.service.CreditoService;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,9 @@ import java.util.List;
 public class CreditoController {
     private final CreditoService creditoService;
 
+    @Autowired
+    private KafkaProducerService kafkaProducerService;
+
     public CreditoController(CreditoService creditoService) {
         this.creditoService = creditoService;
     }
@@ -25,7 +30,11 @@ public class CreditoController {
             description = "Busca todos os créditos cadastrados"
     )
     public List<CreditoDTO> getAllCreditos() {
-        return creditoService.getAllCreditos();
+        List<CreditoDTO> dtos = creditoService.getAllCreditos();
+        kafkaProducerService.sendConsultaNotification(
+                "Listagem de todos os créditos realizada."
+        );
+        return dtos;
     }
 
     @GetMapping("/{numeroNfse}")
@@ -36,7 +45,11 @@ public class CreditoController {
     public List<CreditoDTO> getCreditoByNumeroNfse(
             @PathVariable String numeroNfse
     ) {
-        return creditoService.findByNumeroNfse(numeroNfse);
+        List<CreditoDTO> dtos = creditoService.findByNumeroNfse(numeroNfse);
+        kafkaProducerService.sendConsultaNotification(
+                "Listagem de todos os créditos realizada com base no número NFSE: " + numeroNfse
+        );
+        return dtos;
     }
 
     @GetMapping("/credito/{numeroCredito}")
@@ -47,6 +60,10 @@ public class CreditoController {
     public CreditoDTO getCreditoByNumeroCredito(
             @PathVariable String numeroCredito
     ) {
-        return creditoService.findByNumeroCredito(numeroCredito);
+        CreditoDTO dto = creditoService.findByNumeroCredito(numeroCredito);
+        kafkaProducerService.sendConsultaNotification(
+                "Consulta de crédito realizada com base no número do Crédito: " + numeroCredito
+        );
+        return dto;
     }
 }

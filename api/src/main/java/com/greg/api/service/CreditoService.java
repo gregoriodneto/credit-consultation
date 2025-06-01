@@ -2,7 +2,9 @@ package com.greg.api.service;
 
 import com.greg.api.dto.CreditoDTO;
 import com.greg.api.entity.Credito;
+import com.greg.api.messaging.KafkaProducerService;
 import com.greg.api.repository.CreditoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
