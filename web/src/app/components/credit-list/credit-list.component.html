@@ -1,0 +1,20 @@
+<table class="credito-table">
+  <thead>
+    <tr>
+      <th>Número Crédito</th>
+      <th>Número NFSE</th>
+      <th>Data Constituição</th>
+      <th>Valor ISSQN</th>
+      <th>Tipo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let credito of creditos">
+      <td>{{ credito.numeroCredito }}</td>
+      <td>{{ credito.numeroNfse }}</td>
+      <td>{{ credito.dataConstituicao | date: 'dd/MM/yyyy' }}</td>
+      <td>{{ credito.valorIssqn | currency: 'BRL' }}</td>
+      <td>{{ credito.tipoCredito }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,13 @@
+<div class="search-container">
+  <div class="search-group">
+    <label for="nfse">Buscar por NFSE:</label>
+    <input id="nfse" [(ngModel)]="numeroNfse" placeholder="Número NFSE" />
+    <button (click)="searchNfse()">Buscar</button>
+  </div>
+
+  <div class="search-group">
+    <label for="credito">Buscar por Número Crédito:</label>
+    <input id="credito" [(ngModel)]="numeroCredito" placeholder="Número Crédito" />
+    <button (click)="searchCredito()">Buscar</button>
+  </div>
+</div>

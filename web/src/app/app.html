@@ -1,0 +1,10 @@
+<div class="container">
+  <app-credit-search
+    (searchByNfse)="buscarPorNfse($event)"
+    (searchByCredito)="buscarPorCredito($event)">
+  </app-credit-search>
+
+  <button class="button-todos" (click)="buscarTodos()">Buscar Todos</button>
+
+  <app-credit-list [creditos]="creditos"></app-credit-list>
+</div>

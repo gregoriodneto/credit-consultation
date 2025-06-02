@@ -1,0 +1,25 @@
+/* Tabela estilizada */
+.credito-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.credito-table th, .credito-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+.credito-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.credito-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.credito-table tr:hover {
+  background-color: #e9ecef;
+}
